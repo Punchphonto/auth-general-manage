@@ -1,19 +1,12 @@
-from django.shortcuts import render
+
 from.models import *
-from django.core import serializers
-from django.http import HttpResponse, HttpResponseNotFound, Http404, JsonResponse
-from django.forms.models import model_to_dict
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics
 
 # Create your views here.
 @api_view(['POST'])
