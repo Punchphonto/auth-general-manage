@@ -18,6 +18,16 @@ def login_view(request):
     if user is not None:
         login(request, user)
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'user_id': user.id, 'token': token.key, "is_staff":user.is_staff}, status=status.HTTP_200_OK)
+        return Response(
+                {
+                    'user_id': user.id,
+                    'name': user.first_name,
+                    'token': token.key, 
+                    "is_staff":user.is_staff,
+                    "success": True
+                }, 
+                status=status.HTTP_200_OK
+            )
+    
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
