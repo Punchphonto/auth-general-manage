@@ -21,4 +21,5 @@ from manage_auth.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', login_view, name='login'),
+    path('token', check_is_authenticate, name='test_api_token'),
 ]

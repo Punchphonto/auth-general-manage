@@ -3,10 +3,11 @@ from.models import *
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
+from django.http import HttpResponse, HttpResponseNotFound, Http404, JsonResponse
 
 # Create your views here.
 @api_view(['POST'])
@@ -31,3 +32,8 @@ def login_view(request):
     
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def check_is_authenticate(request):
+    return JsonResponse({"is_authenticate":True})
